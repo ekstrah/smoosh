@@ -23,6 +23,7 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 	router.GET("/", serveUploadPage)
 	router.POST("/upload", uploadHandler)
+	router.GET("/list", serverListPage)
 	router.Run(":8080")
 }
 
@@ -43,6 +44,10 @@ const uploadPage string = `<html>
 
 // 업로드 폼 제공 핸들러
 func serveUploadPage(c *gin.Context) {
+	c.Data(http.StatusOK, "text/html", []byte(uploadPage))
+}
+
+func serverListPage(c *gin.Context) {
 	c.Data(http.StatusOK, "text/html", []byte(uploadPage))
 }
 
